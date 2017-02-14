@@ -214,3 +214,29 @@ Abstract `onProviderError` function to be implemented by custom emitter.
 * `err` (Object) - Error to emit.
 
 **Note:** This function will be called when provider emits an error.
+
+### .removeListener (event, listener)
+
++ `event` (String) - Event name of listener to remove.
++ `listener` (Function) - Listener of event name to remove.
+
+### .removeAllListeners ()
+
+It does what it says it does.
+
+## ServiceProvider Events
+
+### .on('data', callback)
+
+Listens for main emitter event.
+
+The callback argument gets a single argument, `data` received from provider.
+
+### .on('error', callback)
+
+Listens for error emitter event.
+
+The callback argument gets a single argument, a possible `error` received from
+provider.
+
+## ServiceProvider Methods
