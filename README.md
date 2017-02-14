@@ -92,7 +92,7 @@ class MyProvider extends ServiceProvider {
    */
   turnON () {
 
-    if (this.isTurnedON()) return; // Return if already ON.
+    if (this.isTurnedON()) { return }; // Return if already ON.
 
     super.turnON(); // Do not forget to call `turnON()` method of super class.
 
