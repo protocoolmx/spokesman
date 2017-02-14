@@ -1,0 +1,26 @@
+{
+  "name": "spokesman",
+  "version": "0.0.0",
+  "description": "Node.js Service Emitter, you ask and spokesman will do its best to deliver an answer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/protocoolmx/spokesman.git"
+  },
+  "keywords": [
+    "broadcast",
+    "emitter",
+    "message",
+    "provider",
+    "service"
+  ],
+  "author": "Protocool",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/protocoolmx/spokesman/issues"
+  },
+  "homepage": "https://github.com/protocoolmx/spokesman#readme"
+}
