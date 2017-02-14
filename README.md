@@ -16,7 +16,7 @@ First of all you need to extend emitter class.
 
 ```javascript
 // MyEmitter.js
-const ServiceEmitter = spokesman.ServiceEmitter;
+const ServiceEmitter = require('spokesman.js').ServiceEmitter;
 
 let singleton = Symbol();
 let singletonEnforcer = Symbol();
@@ -79,7 +79,7 @@ Once we have our basic `MyEmitter` the next step is to create a custom provider.
 
 ```javascript
 // MyProvider.js
-const ServiceProvider = spokesman.ServiceProvider;
+const ServiceProvider = require('spokesman.js').ServiceProvider;
 
 class MyProvider extends ServiceProvider {
 
@@ -126,3 +126,91 @@ MyEmitter.getInstance().on('data', (data) => {
 ```
 
 You can create your own Emitters and Providers to adapt to your necessities.
+
+## ServiceEmitter Properties
+
+### .provider : `ServiceProvider`
+
+Instance of `ServiceProvider` registered.
+
+## ServiceEmitter Methods
+
+### constructor (opts)
+
+Constructor receives an `Object` with options:
+
+* `delay` (Number) - Delay in milliseconds for intervals, default set to `1000`.
+* `autoRequest` (Boolean) - Whether to request data to provider automatically
+or not, default set to `true`.
+
+### .dataHasListeners () : `Boolean`
+
+Checks if any listeners listen 'data' event.
+
+### .isListeningTo (event, listener) : `Boolean`
+
+Checks if listener provided is listening event name.
+
+* `event` (String) - Event name to check.
+* `listener` (Function) - Listener to check
+
+### .registerProvider (provider)
+
+Public method for ServiceProvider registration.
+
+* `provider` (ServiceProvider) - One of the available providers.
+
+### .isProviderRegistered () : `Boolean`
+
+Verifies if a provider is already registered.
+
+### .getCurrentData ([pick]) : `Object`
+
+Get current provider data with optional pick filter.
+
+* `pick` (Array) - Array of properties to return in Object.
+
+### .interval ()
+
+Abstract `interval` function to be implemented by custom emitter.
+
+**Note:** This function will be called in each cycle of main interval.
+
+### .onNewListener (event, listener)
+
+Abstract `onNewListener` function to be implemented by custom emitter.
+
+* `event` (String) - Event name.
+* `listener` (Function) - Listener Function.
+
+
+**Note:** This function will be called on new event listener.
+
+### .onRemoveListener (event, listener)
+
+Abstract `onRemoveListener` function to be implemented by custom emitter.
+
+* `event` (String) - Event name.
+* `listener` (Function) - Listener Function.
+
+**Note:** This function will be called on remotion of event listener.
+
+### .onProviderData (data) : `Boolean`
+
+Abstract `onProviderData` function to be implemented by custom emitter.
+
+* `data` (Object) - Data to emit.
+
+**Notes:**
+
+* This function will be called when provider emits new data.
+* The returned value by the implementation of this method will be used to
+decide if we should update provider data received from provider or not.
+
+### .onProviderError (err)
+
+Abstract `onProviderError` function to be implemented by custom emitter.
+
+* `err` (Object) - Error to emit.
+
+**Note:** This function will be called when provider emits an error.
