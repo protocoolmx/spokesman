@@ -6,7 +6,7 @@ Super flexible Node.js Service Emitter, you ask and you decide how spokesman wil
 
 ## Install
 
-```
+```sh
 $ npm install spokesman.js --save
 ```
 
@@ -309,3 +309,13 @@ to know when custom emitters are requesting new data.
 Callback arguments:
 
 * `opts` (Object) - Optional Object passed from custom emitter.
+
+## Testing
+
+```sh
+$ npm test
+```
+
+## License
+
+MIT
