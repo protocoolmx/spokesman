@@ -127,15 +127,11 @@ MyEmitter.getInstance().on('data', (data) => {
 
 You can create your own Emitters and Providers to adapt to your necessities.
 
----
-
 ## ServiceEmitter Properties
 
 ### .provider : `ServiceProvider`
 
 Instance of `ServiceProvider` registered.
-
----
 
 ## ServiceEmitter Methods
 
@@ -228,8 +224,6 @@ Abstract `onProviderError` function to be implemented by custom emitter.
 
 It does what it says it does.
 
----
-
 ## ServiceProvider Events
 
 ### .on('data', callback)
@@ -247,8 +241,6 @@ Listens for error emitter event.
 Callback arguments:
 
 * `error` (Object) - Error received from custom emitter.
-
----
 
 ## ServiceProvider Methods
 
@@ -296,8 +288,6 @@ Emits 'error' event which is listened by `ServiceEmitter` with error received
 from custom provider to make it available for consumers of your custom emitter.
 
 * `err` (Object) - Possible error to transmit to `ServiceEmitter`.
-
----
 
 ## ServiceProvider Events
 
