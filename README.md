@@ -10,7 +10,7 @@ Super flexible Node.js Service Emitter, you ask and you decide how spokesman wil
 $ npm install spokesman.js --save
 ```
 
-## How to create custom `ServiceEmitter`.
+## How to create custom `ServiceEmitter`
 
 First of all you need to extend emitter class.
 
@@ -73,7 +73,7 @@ module.exports = MyEmitter;
 **Note:** `MyEmitter` is a singleton, we recommend use this pattern to keep a
 clean implementation.
 
-## How to create custom `ServiceProvider`.
+## How to create custom `ServiceProvider`
 
 Once we have our basic `MyEmitter` the next step is to create a custom provider.
 
