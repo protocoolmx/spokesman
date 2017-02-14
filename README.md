@@ -127,11 +127,15 @@ MyEmitter.getInstance().on('data', (data) => {
 
 You can create your own Emitters and Providers to adapt to your necessities.
 
+---
+
 ## ServiceEmitter Properties
 
 ### .provider : `ServiceProvider`
 
 Instance of `ServiceProvider` registered.
+
+---
 
 ## ServiceEmitter Methods
 
@@ -224,19 +228,84 @@ Abstract `onProviderError` function to be implemented by custom emitter.
 
 It does what it says it does.
 
+---
+
 ## ServiceProvider Events
 
 ### .on('data', callback)
 
 Listens for main emitter event.
 
-The callback argument gets a single argument, `data` received from provider.
+Callback arguments:
+
+* `data` (Object) - Data received from custom emitter.
 
 ### .on('error', callback)
 
 Listens for error emitter event.
 
-The callback argument gets a single argument, a possible `error` received from
-provider.
+Callback arguments:
+
+* `error` (Object) - Error received from custom emitter.
+
+---
 
 ## ServiceProvider Methods
+
+### .turnON ()
+
+Turns ON provider, usually you would like to override default behavior for this
+action in providers.
+
+**Note:** Even if you override this, you should always call super class `turnON`
+method to update `ServiceProvider` status.
+
+### .turnOFF ()
+
+Turns OFF provider, usually you would like to override default behavior for this
+action in providers.
+
+**Note:** Even if you override this, you should always call super class `turnOFF`
+method to update `ServiceProvider` status.
+
+### .isTurnedON () : `Boolean`
+
+Whether provider is turned 'ON' or not.
+
+### .requestData ([opts])
+
+Notifies to custom provider that custom emitter wants new data.
+
+* `opts` (Object) - Optional Object to be passed along 'wantsData' event.
+
+**Note:** 'wantsData' event should be listened by custom provider in order to
+be able to process request and return response to custom emitter.s
+
+### .setData (data)
+
+Emits 'data' event which is listened by `ServiceEmitter` with data received
+from custom provider to make it available for consumers of your custom emitter.
+
+* `data` (Object) - Data to transmit to `ServiceEmitter`.
+
+**Note:** You should NOT override this method on your providers.
+
+### .setError (err)
+
+Emits 'error' event which is listened by `ServiceEmitter` with error received
+from custom provider to make it available for consumers of your custom emitter.
+
+* `err` (Object) - Possible error to transmit to `ServiceEmitter`.
+
+---
+
+## ServiceProvider Events
+
+### .on('wantsData', callback)
+
+Listens for `wantsData` event, this event should be listen by custom provider
+to know when custom emitters are requesting new data.
+
+Callback arguments:
+
+* `opts` (Object) - Optional Object passed from custom emitter.
