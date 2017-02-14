@@ -1,6 +1,6 @@
 # spokesman.js
 
-[![npm version](https://badge.fury.io/js/spokesman.js.svg)](https://badge.fury.io/js/spokesman.js)
+[![npm version](https://badge.fury.io/js/spokesman.js.svg)](https://badge.fury.io/js/spokesman.js) [![Build Status](https://travis-ci.org/protocoolmx/spokesman.svg?branch=master)](https://travis-ci.org/protocoolmx/spokesman)
 
 Super flexible Node.js Service Emitter, you ask and you decide how spokesman will answer.
 
