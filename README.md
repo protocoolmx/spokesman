@@ -15,6 +15,7 @@ $ npm install spokesman.js --save
 First of all you need to extend emitter class.
 
 ```javascript
+// MyEmitter.js
 const ServiceEmitter = spokesman.ServiceEmitter;
 
 let singleton = Symbol();
@@ -65,6 +66,8 @@ class MyEmitter extends ServiceEmitter {
     this.emit('error', err);
   }
 }
+
+module.exports = MyEmitter;
 ```
 
 **Note:** `MyEmitter` is a singleton, we recommend use this pattern to keep a
@@ -75,6 +78,7 @@ clean implementation.
 Once we have our basic `MyEmitter` the next step is to create a custom provider.
 
 ```javascript
+// MyProvider.js
 const ServiceProvider = spokesman.ServiceProvider;
 
 class MyProvider extends ServiceProvider {
@@ -96,6 +100,8 @@ class MyProvider extends ServiceProvider {
     this.on('wantsData', (opts) => this.setData('Hello world!'));
   }
 }
+
+module.exports = MyProvider;
 ```
 
 **Note:** The default behavior of `ServiceEmitter` is to remove all provider
@@ -107,6 +113,9 @@ Now that our custom emitter and provider are ready we will see how they work
 together.
 
 ```javascript
+const MyEmitter = require('./MyEmitter');
+const MyProvider = require('./MyProvider');
+
 // First register `MyProvider` in `MyEmitter`.
 MyEmitter.getInstance().registerProvider(new MyProvider());
 
