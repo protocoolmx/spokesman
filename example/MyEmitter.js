@@ -38,17 +38,9 @@ class MyEmitter extends ServiceEmitter {
     // not get fired unless you call first `this.provider.requestData(opts)` in
     // the override of `interval()`.
 
-    //validate Data here
-    
-    return cb(null, data);
-  }
+    // Validate data here.
 
-  /**
-   * @override
-   */
-  onProviderError (err) {
-    // Emit error received from provider to custom emitters.
-    this.emit('error', err);
+    return cb(null, data);
   }
 }
 
