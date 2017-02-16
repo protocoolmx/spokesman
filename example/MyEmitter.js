@@ -31,15 +31,16 @@ class MyEmitter extends ServiceEmitter {
   /**
    * @override
    */
-  onProviderData (data) {
+  onProviderData (data, cb) {
     // Emit data received from provider to custom emitters.
     //
     // Note: if you call `super({ autoRequest: false })`, then this method will
     // not get fired unless you call first `this.provider.requestData(opts)` in
     // the override of `interval()`.
-    this.emit('data', data);
 
-    return true; // This means `data` received is valid.
+    //validate Data here
+    
+    return cb(null, data);
   }
 
   /**
