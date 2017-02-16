@@ -189,7 +189,7 @@ Abstract `onRemoveListener` function to be implemented by custom emitter.
 
 **Note:** This function will be called on remotion of event listener.
 
-### .onProviderData (data, callback)
+### .onProviderData (data, [callback])
 
 Abstract `onProviderData` function to be implemented by custom emitter.
 
@@ -204,6 +204,8 @@ The callback takes two arguments.
 **Notes:**
 
 * This function will be called when provider emits new data.
+* If you set `autoRequest` as `false`, then this method will not get fired unless
+you call first `this.provider.requestData(opts)` in the override of `interval()`.
 
 ### .onProviderError (err)
 
