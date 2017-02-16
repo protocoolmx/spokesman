@@ -47,23 +47,16 @@ class MyEmitter extends ServiceEmitter {
   /**
    * @override
    */
-  onProviderData (data) {
+  onProviderData (data, cb) {
     // Emit data received from provider to custom emitters.
     //
     // Note: if you call `super({ autoRequest: false })`, then this method will
     // not get fired unless you call first `this.provider.requestData(opts)` in
     // the override of `interval()`.
-    this.emit('data', data);
 
-    return true; // This means `data` received is valid.
-  }
+    // Validate data here.
 
-  /**
-   * @override
-   */
-  onProviderError (err) {
-    // Emit error received from provider to custom emitters.
-    this.emit('error', err);
+    return cb(null, data);
   }
 }
 
@@ -142,6 +135,7 @@ Constructor receives an `Object` with options:
 * `delay` (Number) - Delay in milliseconds for intervals, default set to `1000`.
 * `autoRequest` (Boolean) - Whether to request data to provider automatically
 or not, default set to `true`.
+* `runImmediately` (Boolean) - Determines if interval should be called immediately.
 
 ### .dataHasListeners () : `Boolean`
 
@@ -195,17 +189,23 @@ Abstract `onRemoveListener` function to be implemented by custom emitter.
 
 **Note:** This function will be called on remotion of event listener.
 
-### .onProviderData (data) : `Boolean`
+### .onProviderData (data, [callback])
 
 Abstract `onProviderData` function to be implemented by custom emitter.
 
 * `data` (Object) - Data to emit.
+* `callback` (Function) - Function to be called for data validation.
+
+The callback takes two arguments.
+
+* `error` (Object) - Reason of validation failure.
+* `validatedData` (Object) - Validated data to be applied to data in `ServiceEmitter`.
 
 **Notes:**
 
 * This function will be called when provider emits new data.
-* The returned value by the implementation of this method will be used to
-decide if we should update provider data received from provider or not.
+* If you set `autoRequest` as `false`, then this method will not get fired unless
+you call first `this.provider.requestData(opts)` in the override of `interval()`.
 
 ### .onProviderError (err)
 
@@ -213,7 +213,10 @@ Abstract `onProviderError` function to be implemented by custom emitter.
 
 * `err` (Object) - Error to emit.
 
-**Note:** This function will be called when provider emits an error.
+**Notes:**
+
+* This function will be called when provider emits an error.
+* By default emits error received on 'error' event.
 
 ### .removeListener (event, listener)
 
