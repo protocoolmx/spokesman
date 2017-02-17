@@ -196,16 +196,25 @@ Abstract `onProviderData` function to be implemented by custom emitter.
 * `data` (Object) - Data to emit.
 * `callback` (Function) - Function to be called for data validation.
 
-The callback takes two arguments.
+Callback arguments:
 
 * `error` (Object) - Reason of validation failure.
 * `validatedData` (Object) - Validated data to be applied to data in `ServiceEmitter`.
+
+This callback does three things:
+
+1. Emits any error provided as first argument on 'error' event.
+2. If no errors were provided then set validated data taken from second
+argument as `ServiceEmitter` current data.
+3. Emits validated data on 'data' event as long as `error` is a falsy value.
 
 **Notes:**
 
 * This function will be called when provider emits new data.
 * If you set `autoRequest` as `false`, then this method will not get fired unless
 you call first `this.provider.requestData(opts)` in the override of `interval()`.
+* The callback is optional, and if you decide to omit it then you should emit
+data received on 'data' event to let know listeners when there is new data.
 
 ### .onProviderError (err)
 
