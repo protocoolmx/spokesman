@@ -227,7 +227,7 @@ Abstract `onProviderError` function to be implemented by custom emitter.
 
 It does what it says it does.
 
-## ServiceProvider Events
+## ServiceEmitter Events
 
 ### .on('data', callback)
 
