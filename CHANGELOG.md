@@ -1,5 +1,11 @@
 # Change Log
 
+### v0.2.1
+
+ _2017-02-20_ [v0.2.0...v0.2.1](https://github.com/protocoolmx/spokesman/compare/v0.2.0...v0.2.1)
+
+* [BUG FIX] `ServiceEmitter` options are now validated [PR #8](https://github.com/protocoolmx/spokesman/pull/8).
+
 ### v0.2.0
 
  _2017-02-16_ [v0.1.0...v0.2.0](https://github.com/protocoolmx/spokesman/compare/v0.1.0...v0.2.0)
