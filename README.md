@@ -234,7 +234,7 @@ Abstract `onProviderError` function to be implemented by custom emitter.
 
 ### .removeAllListeners ()
 
-It does what it says it does.
+Removes all listeners of `data` and `error` events.
 
 ## ServiceEmitter Events
 

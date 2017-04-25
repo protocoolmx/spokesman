@@ -1,6 +1,6 @@
 {
   "name": "spokesman.js",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Node.js Service Emitter, you ask and you decide how spokesman will answer.",
   "main": "index.js",
   "scripts": {
