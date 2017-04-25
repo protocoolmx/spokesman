@@ -63,4 +63,34 @@ describe('ServiceEmitter', function () {
       serviceEmitter.once('error', done);
     });
   });
+
+  describe('#removeAllListeners()', function () {
+
+    it('should remove all listener except "newListener" and "removeListener"', function () {
+      let serviceEmitter = new ServiceEmitter({ runImmediately: true });
+      let serviceProvider = new ServiceProvider();
+      serviceEmitter.registerProvider(serviceProvider);
+
+      serviceEmitter.on('data', () => {});
+      serviceEmitter.on('data', () => {});
+      serviceEmitter.on('error', () => {});
+      serviceEmitter.on('error', () => {});
+      serviceEmitter.on('error', () => {});
+
+      assert.equal(serviceEmitter.listenerCount('data'), 2);
+      assert.equal(serviceEmitter.listenerCount('error'), 3);
+
+      assert.equal(serviceProvider.isTurnedON(), true);
+
+      serviceEmitter.removeAllListeners();
+
+      assert.equal(serviceEmitter.listenerCount('data'), 0);
+      assert.equal(serviceEmitter.listenerCount('error'), 0);
+
+      assert.equal(serviceProvider.isTurnedON(), false);
+
+      assert.equal(serviceEmitter.listenerCount('newListener'), 1);
+      assert.equal(serviceEmitter.listenerCount('removeListener'), 1);
+    });
+  });
 });
